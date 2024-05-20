@@ -1,0 +1,68 @@
+name: Assign Unique Reviewer
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Fetch organization members
+        id: fetch-members
+        run: |
+          RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/orgs/Wannabe-Woowa-Article/members")
+          ORG_MEMBERS=$(echo "$RESPONSE" | jq -r '.[].login' | tr '\n' ' ')
+          echo "ORG_MEMBERS=$ORG_MEMBERS" >> $GITHUB_ENV
+
+      - name: Fetch existing PR assignees
+        id: fetch-pr-assignees
+        run: |
+          RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls")
+          EXISTING_ASSIGNEES=$(echo "$RESPONSE" | jq -r '.[].assignees[].login' | sort | uniq | tr '\n' ' ')
+          echo "EXISTING_ASSIGNEES=$EXISTING_ASSIGNEES" >> $GITHUB_ENV
+
+      - name: Select random member
+        id: select-random
+        run: |
+          # Convert organization members to array
+          ORG_MEMBERS_ARRAY=($ORG_MEMBERS)
+
+          # Convert existing assignees to array
+          EXISTING_ASSIGNEES_ARRAY=($EXISTING_ASSIGNEES)
+
+          # Remove PR author from organization members
+          PR_AUTHOR=${{ github.event.pull_request.user.login }}
+          FILTERED_MEMBERS=()
+          for member in "${ORG_MEMBERS_ARRAY[@]}"; do
+            if [[ "$member" != "$PR_AUTHOR" && ! " ${EXISTING_ASSIGNEES_ARRAY[@]} " =~ " ${member} " ]]; then
+              FILTERED_MEMBERS+=($member)
+            fi
+          done
+
+          # Check if there are any eligible members left
+          if [ ${#FILTERED_MEMBERS[@]} -eq 0 ]; then
+            echo "No eligible members to assign"
+            exit 1
+          fi
+
+          # Select a random member from filtered members
+          RANDOM_MEMBER=${FILTERED_MEMBERS[$RANDOM % ${#FILTERED_MEMBERS[@]}]}
+          echo "SELECTED_MEMBER=$RANDOM_MEMBER" >> $GITHUB_ENV
+
+      - name: Assign PR to selected member
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -d '{"assignees":["${{ env.SELECTED_MEMBER }}"]}' \
+            "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/assignees"
