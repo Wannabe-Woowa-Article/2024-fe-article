@@ -170,7 +170,7 @@ test('clicking "confirm" submits payment', async () => {
 
 이 방식의 장점은 내 확신이 증가하고 대부분의 경우에 작성해야 할 테스트 코드가 더욱 줄어든다는 것입니다.
 
-## 그러다던 중에 msw를 발견했습니다.
+## 그러던 중에 msw를 발견했습니다.
 
 [msw](https://github.com/mswjs/msw)는 "Mock Service Worker"의 약자입니다. 서비스 워커는 Node에서 작동하지 않고, 브라우저 기능입니다. 하지만 msw는 테스트 목적으로 Node에서도 지원합니다.
 
