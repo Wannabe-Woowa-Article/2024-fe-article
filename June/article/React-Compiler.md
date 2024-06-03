@@ -1,4 +1,4 @@
-## 🔗 [React Compiler](https://react.dev/learn/react-compiler)
+## 🔗 [React-Compiler](https://react.dev/learn/react-compiler)
 
 ### 🗓️ 번역 날짜: 2024.06.01
 
