@@ -6,7 +6,7 @@
 
 ---
 
-## Type-safe module mocking in Storybook
+## 스토리북에서의 Type-safe 모듈 모킹
 
 UI를 분리하여 개발하고 테스트하는 데 있어 일관성은 매우 중요합니다.
 
