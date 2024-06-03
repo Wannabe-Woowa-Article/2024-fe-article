@@ -1,1 +1,0 @@
-Create study folder
