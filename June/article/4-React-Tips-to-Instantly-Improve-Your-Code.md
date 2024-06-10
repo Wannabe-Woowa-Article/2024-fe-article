@@ -1,8 +1,14 @@
 # [4 React Tips to Instantly Improve Your Code](https://javascript.plainenglish.io/4-react-tips-to-instantly-improve-your-code-7456e028cfa3)
 
-Pavel Pogosov
-Updated On Feb 2, 2023, Translate on May 31 2024
-Keyword : **React**
+### 🗓️ 번역 날짜: 2024.05.31
+
+### 🧚 번역한 크루: 마스터위(명재위)
+
+---
+
+Pavel Pogosov   
+Updated On Feb 2, 2023   
+Keyword : **React**   
 
 React에 대한 탄탄한 지식은 프론트엔드 개발자에게 가장 가치 있는 기술 중 하나입니다. 많은 기업들이 지속적으로 React 개발자를 찾고 있으며, 그들에게 더 많은 보수를 지불하려고 합니다. 그렇기 때문에 개발자로서 지속적으로 성장하는 것은 매우 보람 있는 일입니다.
 
