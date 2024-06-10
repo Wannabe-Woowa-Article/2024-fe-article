@@ -58,17 +58,17 @@ React Compiler는 JavaScript와 React의 규칙에 대한 지식을 활용하여
 
 이미 코드베이스가 잘 메모이제이션되어 있다면 컴파일러를 사용해도 큰 성능 향상을 기대하지 않을 수 있습니다.
 
-하지만 실질적으로는 성능 문제를 일으키는 정확한 종속성을 메모이제이션하는 것이 손으로 하기에는 까다롭습니다.
+하지만 실질적으로 성능 문제를 일으키는 정확한 종속성을 메모이제이션하는 것은 손으로 하기에는 까다롭습니다.
 
 ## - 리액트 컴파일러는 무슨 종류의 메모이제이션을 하나요 ?
 
-React 컴파일러의 초기 버전은 업데이트 성능(기존 컴포넌트의 다시 렌더링)을 개선하는 데 중점을 두고 있습니다.
+React 컴파일러의 초기 버전은 업데이트 성능(기존 컴포넌트의 리렌더링)을 개선하는 데 중점을 두고 있습니다.
 
 그래서 다음 두 가지 사용 사례에 집중하고 있습니다:
 
 1. **계단식으로 발생하는 다시 렌더링 건너뛰기**
 
-`<Parent />` 컴포넌트를 다시 렌더링할 때, 실제로는 `<Parent />`만 변경되었지만 해당 컴포넌트 트리의 많은 컴포넌트가 다시 렌더링되는 상황을 방지합니다.
+`<Parent />` 컴포넌트를 리렌더링할 때, 실제로는 `<Parent />`만 변경되었지만 해당 컴포넌트 트리의 많은 컴포넌트가 다시 렌더링되는 상황을 방지합니다.
 
 2. **React 외부에서 발생하는 비용이 많이 드는 계산 건너뛰기**
 
@@ -78,11 +78,11 @@ React 컴파일러의 초기 버전은 업데이트 성능(기존 컴포넌트�
 
 React는 현재 상태(구체적으로는 props, state, 그리고 context)에 따라 UI를 함수로 표현할 수 있게 해줍니다.
 
-현재 구현 방식에서는 컴포넌트의 상태가 변경될 때 React는 해당 컴포넌트와 그 자식 컴포넌트를 모두 다시 렌더링합니다.
+현재 구현 방식에서는 컴포넌트의 상태가 변경될 때 React는 해당 컴포넌트와 그 자식 컴포넌트를 모두 리렌더링합니다.
 
 단, useMemo(), useCallback(), 또는 React.memo()와 같은 수동 메모이제이션을 적용한 경우는 예외입니다.
 
-예를 들어, 다음 예제에서 `<FriendList>`의 상태가 변경될 때마다 `<MessageButton>`이 다시 렌더링됩니다.
+예를 들어, 다음 예제에서 `<FriendList>`의 상태가 변경될 때마다 `<MessageButton>`이 리렌더링됩니다.
 
 ```tsx
 function FriendList({ friends }) {
@@ -104,7 +104,7 @@ function FriendList({ friends }) {
 
 [리액트 컴파일러 예제 사이트에서 확인해보세요](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAMygOzgFwJYSYAEAYjHgpgCYAyeYOAFMEWuZVWEQL4CURwADrEicQgyKEANnkwIAwtEw4iAXiJQwCMhWoB5TDLmKsTXgG5hRInjRFGbXZwB0UygHMcACzWr1ABn4hEWsYBBxYYgAeADkIHQ4uAHoAPksRbisiMIiYYkYs6yiqPAA3FMLrIiiwAAcAQ0wU4GlZBSUcbklDNqikusaKkKrgR0TnAFt62sYHdmp+VRT7SqrqhOo6Bnl6mCoiAGsEAE9VUfmqZzwqLrHqM7ubolTVol5eTOGigFkEMDB6u4EAAhKA4HCEZ5DNZ9ErlLIWYTcEDcIA)
 
-React 컴파일러는 수동 메모이제이션과 동등한 작업을 자동으로 적용하여 상태 변경 시 앱의 관련 부분만 다시 렌더링되도록 보장합니다.
+React 컴파일러는 수동 메모이제이션과 동등한 작업을 자동으로 적용하여 상태 변경 시 앱의 관련 부분만 리렌더링되도록 보장합니다.
 
 이를 때로는`세밀한 반응성(fine-grained reactivity)`이라고 합니다.
 
@@ -252,7 +252,7 @@ const ReactCompilerConfig = {
 };
 ```
 
-드문 경우이지만, `compilationMode: "annotation"` 옵션을 사용하여 컴파일러를 "옵트인" 모드로 실행하도록 설정할 수도 있습니다.
+드문 경우이지만, `compilationMode: "annotation"` 옵션을 사용하여 컴파일러를 "opt-in" 모드로 실행하도록 설정할 수도 있습니다.
 
 이 옵션을 사용하면 `"use memo"` 지시어가 주석된 컴포넌트와 훅만 컴파일러가 컴파일합니다.
 
@@ -487,7 +487,7 @@ eslint-plugin-react-compiler를 설치한 경우, 컴파일러는 에디터에�
 
 컴파일 후 앱이 제대로 작동하지 않고 eslint 오류가 표시되지 않는다면, 컴파일러가 코드를 잘못 컴파일했을 수 있습니다.
 
-이를 확인하려면 관련이 있을 수 있는 컴포넌트나 훅을 `"use no memo"` 지시어를 통해 강제로 옵트아웃하여 문제를 해결해보세요.
+이를 확인하려면 관련이 있을 수 있는 컴포넌트나 훅을 `"use no memo"` 지시어를 통해 강제로 opt-out 하여 문제를 해결해보세요.
 
 ```ts
 function SuspiciousComponent() {
@@ -510,7 +510,7 @@ function SuspiciousComponent() {
 
 즉, 코드를 수정하더라도 지시어를 제거하지 않으면 컴파일러는 여전히 컴파일을 건너뛰게 됩니다.
 
-오류가 사라지면, 옵트아웃 지시어를 제거했을 때 문제가 다시 발생하는지 확인하십시오.
+오류가 사라지면, opt-out 지시어를 제거했을 때 문제가 다시 발생하는지 확인하십시오.
 
 그런 다음 [React Compiler Playground](https://playground.react.dev/#N4Igzg9grgTgxgUxALhAejQAgFTYHIQAuumAtgqRAJYBeCAJpgEYCemASggIZyGYDCEUgAcqAGwQwANJjBUAdokyEAFlTCZ1meUUxdMcIcIjyE8vhBiYVECAGsAOvIBmURYSonMCAB7CzcgBuCGIsAAowEIhgYACCnFxioQAyXDAA5gixMDBcLADyzvlMAFYIvGAAFACUmMCYaNiYAHStOFgAvk5OGJgAshTUdIysHNy8AkbikrIKSqpaWvqGIiZmhE6u7p7ymAAqXEwSguZcCpKV9VSEFBodtcBOmAYmYHz0XIT6ALzefgFUYKhCJRBAxeLcJIsVIZLI5PKFYplCqVa63aoAbm6u0wMAQhFguwAPPRAQA+YAfL4dIloUmBMlODogDpAA)를 사용하여 버그 보고서를 작성해 주세요.
 
