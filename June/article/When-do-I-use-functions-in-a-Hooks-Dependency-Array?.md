@@ -34,7 +34,7 @@ function ComposeMessage() {
 }
 ```
 
-우리의 효과는 message 상태에 "의존"합니다. 따라서 그 상태가 변경되면 효과를 다시 실행해야 합니다.
+우리의 effect는 message 상태에 "의존"합니다. 따라서 그 상태가 변경되면 effect를 다시 실행해야 합니다.
 
 이제 메시지가 변경될 때 메시지를 로컬 저장소에 저장해 보겠습니다. 이렇게 하면 메시지가 저장되지 않았을 때 신속하게 초안으로 복구할 수 있습니다. 또한 수신자의 사용자 ID를 나타내는 uid prop도 사용하겠습니다.
 
@@ -64,7 +64,7 @@ linter는 이제 uid가 side effect의 일부이기 때문에 의존성 배열�
 
 자, 괜찮습니다. 비록 그것이 우리의 컴포넌트 상태는 아니지만, 다른 곳(예: 부모 컴포넌트)의 상태이므로 동일한 개념입니다.
 
-그렇다면 함수 `saveToLocalStorage`는 어떻게 할까요? 효과에서 이를 사용하고 있으니 의존성 배열에 추가해야 할까요?
+그렇다면 함수 `saveToLocalStorage`는 어떻게 할까요? effect에서 이를 사용하고 있으니 의존성 배열에 추가해야 할까요?
 
 이 경우에는 아닙니다. 왜 그런지 논의하기 전에, `saveToLocalStorage`가 prop으로 전달되는 아래의 리팩터링된 코드와 비교해 봅시다.
 
@@ -88,7 +88,7 @@ function ComposeMessage({ uid, defaultMessage, saveToLocalStorage }) {
 
 이제 linter가 saveToLocalStorage를 의존성 배열에 추가하라고 요청합니다. 차이점은 무엇일까요?
 
-궁극적으로, React는 effects 내의 상태가 변경될 경우 effect를 re-run 해야 합니다. 이전에 `saveToLocalStorage`가 import 되었을 때, linter는 그 함수가 컴포넌트 상태를 "close over"하여 변경되었을 때 effect를 다시 실행할 필요가 없다는 것을 알고 있습니다. 그러나 `saveToLocalStorage`가 prop일 때, 린터는 부모 컴포넌트가 `ComposeMessage`를 어떻게 구현할지에 대해 충분히 알지 못합니다. 다시 말해, linter는 전체 앱을 탐색하여 `ComposeMessage`가 사용되는 모든 위치와 부모가 prop을 전달하는 방식을 알지 못합니다. 그리고 설령 그렇게 한다 하더라도, linter는 당신이 미래에 그것을 어떻게 사용할지 의도를 알지 못합니다. 이러한 불확실성 때문에, 린터는 이제 `saveToLocalStorage`를 의존성 배열에 추가하라고 요청합니다.
+궁극적으로, React는 effects 내의 상태가 변경될 경우 effect를 "re-run" 해야 합니다. 이전에 `saveToLocalStorage`가 import 되었을 때, linter는 그 함수가 컴포넌트 상태를 "close over"하여 변경되었을 때 effect를 다시 실행할 필요가 없다는 것을 알고 있습니다. 그러나 `saveToLocalStorage`가 prop일 때, 린터는 부모 컴포넌트가 `ComposeMessage`를 어떻게 구현할지에 대해 충분히 알지 못합니다. 다시 말해, linter는 전체 앱을 탐색하여 `ComposeMessage`가 사용되는 모든 위치와 부모가 prop을 전달하는 방식을 알지 못합니다. 그리고 설령 그렇게 한다 하더라도, linter는 당신이 미래에 그것을 어떻게 사용할지 의도를 알지 못합니다. 이러한 불확실성 때문에, 린터는 이제 `saveToLocalStorage`를 의존성 배열에 추가하라고 요청합니다.
 
 다음은 부모 컴포넌트가 구현될 수 있는 한 가지 예입니다:
 
@@ -148,7 +148,7 @@ function ComposeMessage({ defaultMessage, saveToLocalStorage }) {
 
 부모 컴포넌트가 어떤 이유로든 다시 렌더링되면(예: 상태 변경 또는 새로운 props), 화살표 함수는 다시 렌더링될 때마다 새로 생성됩니다. 이는 부모가 다시 렌더링될 때마다 `saveToLocalStorage` prop의 함수 아이덴티티가 변경된다는 것을 의미합니다. `ComposeMessage`에서는 `saveToLocalStorage`를 의존성 배열에 포함시켜 버그를 방지해야 하지만, 부모가 다시 렌더링될 때마다 그 아이덴티티가 변경되므로 불필요하게 로컬 저장소에 저장하게 됩니다. 이를 [시연하는 예제](https://codesandbox.io/s/funny-taussig-5tont)를 보세요.
 
-로컬 저장소에 너무 자주 저장하는 것은 괜찮을 수 있지만, 부수 효과가 네트워크 요청인 경우에는 이를 피하고 싶을 것입니다. 따라서 함수의 아이덴티티가 변하지 않도록 유지할 필요가 있습니다.
+로컬 저장소에 너무 자주 저장하는 것은 괜찮을 수 있지만, side effect가 네트워크 요청인 경우에는 이를 피하고 싶을 것입니다. 따라서 함수의 아이덴티티가 변하지 않도록 유지할 필요가 있습니다.
 
 ### `useCallback` 사용하기
 
