@@ -1,8 +1,14 @@
 # [Beyond Chatbots: How AI Can Change Frontend Development](https://thenewstack.io/beyond-chatbots-how-ai-can-change-frontend-development/)
 
-Loraine Lawson
-Updated On Jun 6, 2024, Translate on Jun 10 2024
-Keyword : **AI**, **Frontend**
+### 🗓️ 번역 날짜: 2024.06.10
+
+### 🧚 번역한 크루: 마스터위(명재위)
+
+---
+
+Loraine Lawson   
+Updated On Jun 6, 2024   
+Keyword : **AI**, **Frontend**   
 
 전 프론트엔드 개발자이자 관측 플랫폼 [Honeycomb](https://www.honeycomb.io/?utm_source=the+new+stack&utm_medium=referral&utm_content=inline-mention&utm_campaign=tns+platform)의 엔지니어링 부사장인 [에밀리 나카시마(Emily Nakashima)](https://www.linkedin.com/in/eanakashima/?utm_source=the+new+stack&utm_medium=referral&utm_content=inline-mention&utm_campaign=tns+platform)는 프론트엔드 프로그래머들이 [인공지능(AI)](https://thenewstack.io/ai-for-developers-how-can-programmers-use-artificial-intelligence/)이 그들의 도구에 어떻게 기여할 수 있는지 탐구할 수 있는 최적의 위치에 있다고 말했습니다.
 
