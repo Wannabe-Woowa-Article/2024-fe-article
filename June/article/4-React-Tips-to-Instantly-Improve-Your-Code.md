@@ -1,4 +1,4 @@
-# 4 React Tips to Instantly Improve Your Code
+# [4 React Tips to Instantly Improve Your Code](https://javascript.plainenglish.io/4-react-tips-to-instantly-improve-your-code-7456e028cfa3)
 
 Pavel Pogosov
 Updated On Feb 2, 2023, Translate on May 31 2024
@@ -29,7 +29,7 @@ export default function App() {
     address: "",
   });
 
-  // First handler
+  // 첫 핸들러
   const handleNameChange = (e) => {
     setUser((prev) => ({
       ...prev,
@@ -37,7 +37,7 @@ export default function App() {
     }));
   };
 
-  // Second handler!
+  // 두번째 핸들러!
   const handleSurnameChange = (e) => {
     setUser((prev) => ({
       ...prev,
@@ -45,7 +45,7 @@ export default function App() {
     }));
   };
 
-  // Third handler!!!
+  // 세번째 핸들러!!!
   const handleAddressChange = (e) => {
     setUser((prev) => ({
       ...prev,
@@ -53,7 +53,7 @@ export default function App() {
     }));
   };
 
-  // What if we need one more input? Should we create another handler for it?
+  // 만약 하나의 input이 더 필요하다면 어떨까요? 이를 위한 또 다른 핸들러를 만들어야할까요?
 
   return (
     <>
@@ -115,7 +115,7 @@ export function ListComponent() {
   // Our local state
   const [list, setList] = useState([]);
 
-  // Handler to load data from the server
+  // 서버로부터 데이터를 로드하기위한 핸들러
   const fetchList = async () => {
     try {
       const resp = await fetch("https://www.url.com/list");
@@ -127,12 +127,12 @@ export function ListComponent() {
     }
   };
 
-  // We want to fetch only on mount
+  // 마운트될 때만 fetch하길 원하기에
   useEffect(() => {
     fetchList();
   }, []);
 
-  // Handler responsible for deleting items
+  // 아이템을 지우는 역할의 핸들러
   const handleDeleteItem = (id) => {
     return () => {
       try {
@@ -146,7 +146,7 @@ export function ListComponent() {
     };
   };
 
-  // Here we just render our data items
+  // 여기서 데이터 아이템을 render한다
   return (
     <div className="list-component">
       {list.map(({ id, name }) => (
