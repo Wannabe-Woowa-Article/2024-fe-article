@@ -1,8 +1,14 @@
 # [When do I use functions in a Hooks Dependency Array?](https://reacttraining.com/blog/when-to-use-functions-in-hooks-dependency-array)
 
-Brad Westfall
-Updated On Sep 30, 2019, Translate on Jun 3, 2024
-Keyword : **React** **Hooks**
+### 🗓️ 번역 날짜: 2024.06.03
+
+### 🧚 번역한 크루: 마스터위(명재위)
+
+---
+
+Brad Westfall   
+Updated On Sep 30, 2019   
+Keyword : **React** **Hooks**   
 
 ### 간단히 말하자면...
 
