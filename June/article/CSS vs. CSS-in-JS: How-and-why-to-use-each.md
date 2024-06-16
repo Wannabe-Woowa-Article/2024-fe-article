@@ -18,7 +18,7 @@ React 개발자라면 아마 CSS-in-JS를 사용해본 경험이 있을 것입�
 
 주로 CSS-in-JS가 성능 문제로 지적받기 때문입니다.
 
-그러나 이러한 문제를 곧 해결할 수 있는 새로운 CSS 기능들도 개발 중에 있습니다.
+그러나 이러한 문제를 해결할 수 있는 새로운 CSS 기능들도 개발 중에 있습니다.
 
 이 글의 목적은 현대 CSS의 현재 상태와 미래에 어떻게 변화할 가능성이 있는지를 고려하여, 다가오는 프로젝트에서 CSS와 CSS-in-JS 중에서 선택하는 데 도움을 주기 위함입니다.
 
@@ -51,7 +51,7 @@ React 개발자라면 아마 CSS-in-JS를 사용해본 경험이 있을 것입�
 
 이제 브라우저는 CSS 계층 규칙에 따라 렌더된 HTML에 스타일을 적용할 준비가 됩니다.
 
-이 과정은 CSS가 [페이지 렌더링을 차단](https://blog.logrocket.com/11-best-practices-eliminate-render-blocking-resources/)하고 요청된 페이지의 첫 페인트(first paint)를 지연시키게 합니다.
+이 과정은 CSS가 [페이지 렌더링을 차단](https://blog.logrocket.com/11-best-practices-eliminate-render-blocking-resources/)하고 요청된 페이지의 첫 페인트(first paint)를 지연시킵니다.
 
 첫 페인트는 브라우저가 요청된 페이지의 첫 번째 픽셀을 화면에 그리는 이벤트입니다.
 
