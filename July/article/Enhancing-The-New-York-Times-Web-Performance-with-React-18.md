@@ -73,7 +73,7 @@ return <div dangerouslySetInnerHTML={{ __html: embeddedInteractiveString }} />;
 
 React 18의 도입과 함께 더 엄격한 hydration 불일치 요구 사항이 등장했습니다. 새로운 규칙에 따르면, 초기 브라우저 로드와 클라이언트 측 hydration 사이에 발생하는 모든 DOM 수정은 클라이언트 측 렌더링으로의 fallback을 트리거합니다. 예를 들어, 스크립트 태그가 hydration 전에 "server-test" 요소를 수정하더라도 hydration 불일치가 발생하면 React는 서버 렌더링된 콘텐츠를 폐기하고 클라이언트 측 렌더링으로 fallback하여 스크립트의 영향을 실질적으로 무효화합니다. 이전 버전의 React에서는 hydration 불일치가 발생하더라도 DOM의 버전을 무효 상태로 두는 것을 선택했기 때문에 이러한 문제를 경험하지 않았습니다.
 
-실제로 이것이 의미하는 바는 무엇일까요? 클라이언트에서 `dangerouslySetInnerHTML` 속성을 사용하여 컴포넌트를 렌더링할 때, 그 안에 `<script>` 태그가 포함된 HTML 조각은 브라우저 보안 고려 사항으로 인해 실행되지 않습니다. 이는 `dangerouslySetInnerHTML` 속성을 사용하여 수화 불일치로 인해 클라이언트에서 다시 렌더링된 모든 임베디드 인터랙티브가 자바스크립트가 실행되지 않은 것처럼 렌더링된다는 것을 의미합니다. 위의 예시에서 텍스트 콘텐츠는 "server"에서 "client"로 변경되지만, 수화 불일치가 발생하면 "server"로 다시 렌더링됩니다. 이는 일부 임베디드 인터랙티브가 예상 렌더링과 크게 다르게 보이게 만들었습니다.
+실제로 이것이 의미하는 바는 무엇일까요? 클라이언트에서 `dangerouslySetInnerHTML` 속성을 사용하여 컴포넌트를 렌더링할 때, 그 안에 `<script>` 태그가 포함된 HTML 조각은 브라우저 보안 고려 사항으로 인해 실행되지 않습니다. 이는 `dangerouslySetInnerHTML` 속성을 사용하여 hydration 불일치로 인해 클라이언트에서 다시 렌더링된 모든 임베디드 인터랙티브가 자바스크립트가 실행되지 않은 것처럼 렌더링된다는 것을 의미합니다. 위의 예시에서 텍스트 콘텐츠는 "server"에서 "client"로 변경되지만, hydration 불일치가 발생하면 "server"로 다시 렌더링됩니다. 이는 일부 임베디드 인터랙티브가 예상 렌더링과 크게 다르게 보이게 만들었습니다.
 
 ### 예상 값
 
