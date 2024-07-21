@@ -6,7 +6,7 @@
 
 ---
 
-짧은 답변: 대부분의 경우 useEffect() 콜백은 페인트 후에 실행되지만 항상 그런 것은 아닙니다.
+요약: 대부분의 경우 useEffect() 콜백은 페인트 후에 실행되지만 항상 그런 것은 아닙니다.
 
 [리액트 공식문서](https://react.dev/reference/react/useEffect)에서 아래와 같이 설명하고 있습니다. (2023/08/09)
 
@@ -18,7 +18,7 @@
 
 ## 1. 데모 1 - useEffect의 콜백은 페인트 전에 실행 된다.
 
-아래의 코드 스니펫의 결과는 어떻게 될까요 ?
+아래의 코드 스니펫의 결과는 어떻게 될까요?
 
 ```tsx
 import React, { useState, useEffect } from "react";
