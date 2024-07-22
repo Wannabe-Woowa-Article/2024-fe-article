@@ -18,7 +18,7 @@ jobs:
       - name: Fetch repository collaborators
         id: fetch-collaborators
         run: |
-          RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.ACTION_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/collaborators")
           COLLABORATORS=$(echo "$RESPONSE" | jq -r '.[].login' | tr '\n' ' ')
           echo "COLLABORATORS=$COLLABORATORS" >> $GITHUB_ENV
@@ -26,7 +26,7 @@ jobs:
       - name: Fetch existing PR reviewers
         id: fetch-pr-reviewers
         run: |
-          RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.ACTION_TOKEN }}" \
             "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/requested_reviewers")
           EXISTING_REVIEWERS=$(echo "$RESPONSE" | jq -r '.users[].login' | sort | uniq | tr '\n' ' ')
           echo "EXISTING_REVIEWERS=$EXISTING_REVIEWERS" >> $GITHUB_ENV
@@ -63,6 +63,6 @@ jobs:
         run: |
           curl -X POST \
             -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Authorization: token ${{ secrets.ACTION_TOKEN }}" \
             -d '{"reviewers":["${{ env.SELECTED_COLLABORATOR }}"]}' \
             "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/requested_reviewers"
