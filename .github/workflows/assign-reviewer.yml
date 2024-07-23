@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.PAT }} # PAT를 사용하도록 설정
+          persist-credentials: false
 
       - name: Fetch repository collaborators
         id: fetch-collaborators
