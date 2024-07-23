@@ -6,7 +6,7 @@
 
 ---
 
-<img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*fgnh970Zf7cdoplU"/>
+<img width="500px" src="https://miro.medium.com/v2/resize:fit:1400/format:webp/0*fgnh970Zf7cdoplU"/>
 
 ## Git-Flow
 
@@ -20,7 +20,7 @@ Git-Flow는 다음과 같은 브랜치를 가지고 있습니다.
 - Hotfix 브랜치: 온라인 결함을 수정하는 브랜치입니다.
 - Master 브랜치: 최신 릴리스된 버전의 기준을 저장하는 브랜치입니다.
 
-<img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*hmZzuG8oU7fqsnpfTgKDUw.png"/>
+<img width="500px" src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*hmZzuG8oU7fqsnpfTgKDUw.png"/>
 
 각 기능은 자체 개발 브랜치, 즉 feature 브랜치를 가지고 있습니다. 개발자가 두 개의 기능을 작업해야 할 때, 개발자는 "check out" 명령을 실행하여 브랜치 사이를 전환하기만 하면 됩니다. 이는 개발 과정에서 두 기능의 개발 간 상호 간섭을 방지하기 위함입니다.
 
@@ -81,7 +81,7 @@ hotfix 프로세스는 다음과 같습니다:
 - hotfix 브랜치를 master 브랜치에 병합합니다.
 - hotfix 브랜치를 삭제합니다.
 
-<img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*bvubr15Z_l3UknX1w8Mx1A.png"/>
+<img width="500px" src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*bvubr15Z_l3UknX1w8Mx1A.png"/>
 
 ### 장점
 
