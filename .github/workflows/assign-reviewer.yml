@@ -34,6 +34,14 @@ jobs:
           EXISTING_REVIEWERS=$(echo "$RESPONSE" | jq -r '.users[].login' | sort | uniq | tr '\n' ' ')
           echo "EXISTING_REVIEWERS=$EXISTING_REVIEWERS" >> $GITHUB_ENV
 
+      - name: Fetch all assigned reviewers
+        id: fetch-all-reviewers
+        run: |
+          RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.PAT }}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls")
+          ALL_REVIEWERS=$(echo "$RESPONSE" | jq -r '.[].requested_reviewers | .[].login' | sort | uniq | tr '\n' ' ')
+          echo "ALL_REVIEWERS=$ALL_REVIEWERS" >> $GITHUB_ENV
+
       - name: Select random collaborator
         id: select-random
         run: |
@@ -43,11 +51,14 @@ jobs:
           # Convert existing reviewers to array
           EXISTING_REVIEWERS_ARRAY=($EXISTING_REVIEWERS)
 
-          # Remove PR author from collaborators
+          # Convert all reviewers to array
+          ALL_REVIEWERS_ARRAY=($ALL_REVIEWERS)
+
+          # Remove PR author and already assigned reviewers from collaborators
           PR_AUTHOR=${{ github.event.pull_request.user.login }}
           FILTERED_COLLABORATORS=()
           for collaborator in "${COLLABORATORS_ARRAY[@]}"; do
-            if [[ "$collaborator" != "$PR_AUTHOR" && ! " ${EXISTING_REVIEWERS_ARRAY[@]} " =~ " ${collaborator} " ]]; then
+            if [[ "$collaborator" != "$PR_AUTHOR" && ! " ${EXISTING_REVIEWERS_ARRAY[@]} " =~ " ${collaborator} " && ! " ${ALL_REVIEWERS_ARRAY[@]} " =~ " ${collaborator} " ]]; then
               FILTERED_COLLABORATORS+=($collaborator)
             fi
           done
@@ -69,3 +80,12 @@ jobs:
             -H "Authorization: token ${{ secrets.PAT }}" \
             -d '{"reviewers":["${{ env.SELECTED_COLLABORATOR }}"]}' \
             "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/requested_reviewers"
+
+      - name: Assign PR to the author
+        run: |
+          PR_AUTHOR=${{ github.event.pull_request.user.login }}
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.PAT }}" \
+            -d '{"assignees":["'$PR_AUTHOR'"]}' \
+            "https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/assignees"
