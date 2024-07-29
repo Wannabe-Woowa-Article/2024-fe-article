@@ -1,10 +1,12 @@
-## 🔗 [깔끔한 리액트 설계로의 길(Part8) React-Query](https://profy.dev/article/react-architecture-tanstack-query)
+## 🔗 [Path To A Clean(er) React Architecture (Part 8) - React-Query](https://profy.dev/article/react-architecture-tanstack-query)
 
 ### 🗓️ 번역 날짜: 2024.07.21
 
 ### 🧚 번역한 크루: 마스터위(명재위)
 
 ---
+
+## 깔끔한 리액트 설계로의 길(Part8) React-Query
 
 Johannes Kettmann  
 Updated On July 19, 2024  
