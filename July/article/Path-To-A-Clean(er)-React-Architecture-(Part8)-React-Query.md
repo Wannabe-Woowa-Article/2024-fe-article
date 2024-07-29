@@ -1,4 +1,4 @@
-## 🔗 [Path To A Clean(er) React Architecture (Part 8) - React-Query](https://profy.dev/article/react-architecture-tanstack-query)
+## 🔗 [깔끔한 리액트 설계로의 길(Part8) React-Query](https://profy.dev/article/react-architecture-tanstack-query)
 
 ### 🗓️ 번역 날짜: 2024.07.21
 
