@@ -141,7 +141,7 @@ function updateEffectImpl(fiberFlags, hookFlags, create, deps): void {
 
 우리는 deps 배열이 어떻게 작동하는지 알 수 있습니다. 다시 렌더링할 때, deps가 변경되지 않는 경우를 제외하고는 Effect 객체를 다시 생성합니다. deps가 변경되면, 생성된 Effect는 실행되도록 표시되며, 이전의 정리 함수가 함께 사용됩니다.
 
-## 3. 효과가 언제 그리고 어떻게 실행되고 정리되는가?
+## 3. Effect가 언제 그리고 어떻게 실행되고 정리되는가?
 
 위에서 우리는 `useEffect()`가 단순히 fiber 노드에 추가적인 데이터 구조를 생성한다는 것을 알았습니다. 이제 이러한 Effect 객체들이 어떻게 처리되는지 알아보아야 합니다.
 
