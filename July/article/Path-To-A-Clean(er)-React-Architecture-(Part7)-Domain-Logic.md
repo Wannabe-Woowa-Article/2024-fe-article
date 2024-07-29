@@ -1,4 +1,4 @@
-## 🔗 [Path To A Clean(er) React Architecture (Part 7) - Domain Logic](https://overreacted.io/goodbye-clean-code/)
+## 🔗 [Path To A Clean(er) React Architecture (Part 7) - Domain Logic](https://profy.dev/article/react-architecture-domain-logic)
 
 ### 🗓️ 번역 날짜: 2024.07.17
 
