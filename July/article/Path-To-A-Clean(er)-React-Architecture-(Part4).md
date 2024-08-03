@@ -83,7 +83,7 @@ export function UserProfile({ handle }: UserProfileProps) {
 
 ## 문제점은 무엇인가?
 
-UI 코드는 ``user 객체에 대해 불필요하게 중첩된 데이터 구조를 사용합니다. 우리는 자주 다음과 같이 사용합니다.
+UI 코드는 `user` 객체에 대해 불필요하게 중첩된 데이터 구조를 사용합니다. 우리는 자주 다음과 같이 사용합니다.
 
 - `user.attributes.xyz` 또는
 - `user.relationships.followerIds`
@@ -350,5 +350,3 @@ export default { getUser };
 <img src='../images/2.png' width=400>
 
 이 시리즈의 다음 글에서는 리포지토리 패턴을 사용하여 이러한 책임 중 일부를 fetch 함수에서 분리할 것입니다.
-
-<script src="https://gitlab.com/-/snippets/3732667.js"></script>
