@@ -62,7 +62,7 @@ npx @sentry/wizard@latest -i nextjs
 <br />
 
 <img src='../images/sentry3.png' width={400} />
-- 구체적인 에러 예시 1
+구체적인 에러 예시 1
 
 <br />
 <br />
