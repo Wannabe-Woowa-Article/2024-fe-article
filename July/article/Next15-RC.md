@@ -28,7 +28,7 @@ npm install next@rc react@rc react-dom@rc
 
 ## React 19 RC
 
-Next.js 앱 라우터는 프레임워크용 React `carnary channel`을 기반으로 구축되어, 개발자들이 React 19 출시 전에 이러한 새로운 React API를 사용하고 피드백을 제공할 수 있도록 합니다.
+Next.js 앱 라우터는 프레임워크용 React `canary channel`을 기반으로 구축되어, 개발자들이 React 19 출시 전에 이러한 새로운 React API를 사용하고 피드백을 제공할 수 있도록 합니다.
 
 Next.js 15 RC는 이제 React 19 RC를 지원하며, 이는 Actions와 같은 클라이언트 및 서버의 새로운 기능을 포함합니다.
 
