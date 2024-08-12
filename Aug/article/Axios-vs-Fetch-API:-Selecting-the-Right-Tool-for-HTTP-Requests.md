@@ -281,38 +281,6 @@ Axios는 `axios.all()` 메서드를 제공하여 여러 요청을 동시에 할 
 ```jsx
 const axios = require('axios');
 
-// Define the base URL for the request
-const baseURL = 'https://jsonplaceholder.typicode.com/todos';
-
-// Define the URLs for the requests
-const urls = [`${baseURL}/1`, `${baseURL}/2`, `${baseURL}/3`];
-
-// Create an array of Axios request promises
-const axiosRequests = urls.map((url) => axios.get(url));
-
-// Send multiple requests simultaneously using `axios.all()`
-axios
-	.all(axiosRequests)
-	.then(
-		axios.spread((...responses) => {
-			// Handle responses from all requests
-			responses.forEach((response, index) => {
-				console.log(`Response from ${urls[index]}:`, response.data);
-			});
-		})
-	)
-	.catch((error) => {
-		console.error('Error fetching data:', error.message);
-	});
-```
-
-Fetch를 사용하여 동일한 결과를 얻기 위해서는 내장된 `Promise.all()` 메서드에 모든 fetch 요청을 배열로 전달해야 합니다. 그런 다음 async 함수를 사용하여 응답을 처리합니다.
-
-다음은 Fetch를 사용하여 동시에 HTTP 요청을 보내는 방법입니다:
-
-```jsx
-const axios = require('axios');
-
 // 요청의 기본 URL 정의
 const baseURL = 'https://jsonplaceholder.typicode.com/todos';
 
@@ -333,6 +301,38 @@ axios
 			});
 		})
 	)
+	.catch((error) => {
+		console.error('Error fetching data:', error.message);
+	});
+```
+
+Fetch를 사용하여 동일한 결과를 얻기 위해서는 내장된 `Promise.all()` 메서드에 모든 fetch 요청을 배열로 전달해야 합니다. 그런 다음 async 함수를 사용하여 응답을 처리합니다.
+
+다음은 Fetch를 사용하여 동시에 HTTP 요청을 보내는 방법입니다:
+
+```jsx
+// 요청할 base URL 정의
+const baseURL = 'https://jsonplaceholder.typicode.com/todos';
+
+// 요청할 URLs 정의
+const urls = [`${baseURL}/1`, `${baseURL}/2`, `${baseURL}/3`];
+
+// fetch 요청의 프로미스를 저장할 배열 생성
+const fetchRequests = urls.map((url) => fetch(url));
+
+// `Promise.all()`을 사용하여 여러 요청을 동시에 보냄
+Promise.all(fetchRequests)
+	.then((responses) => {
+		// 모든 요청의 응답을 처리
+		responses.forEach((response, index) => {
+			if (!response.ok) {
+				throw new Error(`Request ${urls[index]} failed with status ${response.status}`);
+			}
+			response.json().then((data) => {
+				console.log(`Response from ${urls[index]}:`, data);
+			});
+		});
+	})
 	.catch((error) => {
 		console.error('Error fetching data:', error.message);
 	});
