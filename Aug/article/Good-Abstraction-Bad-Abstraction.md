@@ -1,4 +1,4 @@
-## 🔗 [Axios vs. Fetch API: Selecting the Right Tool for HTTP Requests](https://frontendatscale.com/issues/2/)
+## 🔗 [Good Abstraction, Bad Abstraction](https://frontendatscale.com/issues/2/)
 
 ### 🗓️ 번역 날짜: 2024.08.12
 
