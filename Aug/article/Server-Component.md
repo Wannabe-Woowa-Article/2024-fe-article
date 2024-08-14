@@ -79,9 +79,9 @@ Next.js에서는 캐시된 데이터와 캐시되지 않은 데이터를 모두 
 
 전체 라우트 캐시 및 데이터 캐시에 대해 자세히 알아보세요.
 
-[Building Your Application: Caching](https://nextjs.org/docs/app/building-your-application/caching#full-route-cache)
+[Building Your Application: Caching - full route cache](https://nextjs.org/docs/app/building-your-application/caching#full-route-cache)
 
-[Building Your Application: Caching](https://nextjs.org/docs/app/building-your-application/caching#data-cache)
+[Building Your Application: Caching - data cache](https://nextjs.org/docs/app/building-your-application/caching#data-cache)
 
 ### 동적 렌더링으로 전환
 
